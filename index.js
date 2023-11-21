@@ -18,7 +18,7 @@ let addInputs = () => {
   let newPassword = passwordInput.value.trim();
 
   if (newName === "" || newEmail === "" || newPassword === "") {
-    alert("Please Enter the required fields");
+    alert("Please enter the required fields");
     return;
   }
 
@@ -27,7 +27,6 @@ let addInputs = () => {
     name: newName,
     email: newEmail,
     password: newPassword,
-    completed: false,
   };
 
   inputs.push(data);
@@ -41,14 +40,21 @@ let addInputs = () => {
 
   localStorage.setItem("inputs", JSON.stringify(inputs));
 
-  // Redirect to profile.html only after pushing data to inputs
-  updateProfilePage();
+  let user_records = JSON.parse(localStorage.getItem("inputs")) || [];
+  let current_user = user_records.find(
+    (v) => v.email === newEmail && v.password === newPassword
+  );
+
+  if (current_user) {
+    localStorage.setItem("name", current_user.name);
+    localStorage.setItem("email", current_user.email);
+    localStorage.setItem("id", current_user.id);
+    window.location.href = "profile.html";
+  } else {
+    alert("Login failed");
+  }
 };
 
-const signInButton = document.getElementById("signin-btn"); 
-signInButton.addEventListener("click", addInputs);
 
-// Function to update profile page
-function updateProfilePage() {
-  window.location.href = "profile.html";
-}
+const signInButton = document.getElementById("signin-btn");
+signInButton.addEventListener("click", addInputs);

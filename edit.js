@@ -1,6 +1,29 @@
-// Retrieve latestUser from localStorage
-const latestUser = JSON.parse(localStorage.getItem("latestUser"));
+let nameElement = document.getElementById("name");
+let emailElement = document.getElementById("email");
+let changePasswordCheckbox = document.getElementById("changePassword");
+let newPasswordElement = document.getElementById("newPassword");
 
-// Populate the input fields in edit.html with the latest user data
-document.getElementById("name").value = latestUser.name;
-document.getElementById("email").value = latestUser.email;
+let name = localStorage.getItem("name");
+let email = localStorage.getItem("email");
+let id = Number(localStorage.getItem("id"));
+nameElement.value = name;
+emailElement.value = email;
+
+function updateProfile() {
+  const index = inputs.findIndex((user) => user.id === id);
+  // If the user is found in the array, update the values
+  if (index !== -1) {
+    inputs[index].name = nameElement.value;
+    inputs[index].email = emailElement.value;
+
+    // If the changePassword checkbox is checked, update the password
+    if (changePasswordCheckbox.checked) {
+      inputs[index].password = newPasswordElement.value; // Use newPasswordElement.value instead of newPassword
+    }
+
+    // Save the updated inputs array to localStorage
+    localStorage.setItem("inputs", JSON.stringify(inputs));
+  }
+
+  alert("Profile saved!");
+}

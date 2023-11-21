@@ -13,11 +13,6 @@ const displayImage = () => {
 };
 displayImage();
 
-
-
-
 function populateEditForm() {
-
-    window.location.href = "edit.html";
-
+  window.location.href = "edit.html";
 }

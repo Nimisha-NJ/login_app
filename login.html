@@ -47,9 +47,9 @@
             </div>
             <div class="input-group mb-3">
               <input
-                type="text"
                 class="form-control form-control-lg bg-light fs-6"
-                id="email-input"
+                type="email"
+                id="email"
                 placeholder="Email address"
               />
             </div>
@@ -57,13 +57,18 @@
               <input
                 type="password"
                 class="form-control form-control-lg bg-light fs-6"
-                id="password-input"
+                id="password"
                 placeholder="Password"
               />
             </div>
 
             <div class="input-group mb-3">
-              <button class="btn btn-lg btn-primary w-100 fs-6" onclick="loginUser()">Login</button>
+              <button
+                class="btn btn-lg btn-primary w-100 fs-6"
+                onclick="saveData()"
+              >
+                Login
+              </button>
             </div>
 
             <div class="row">
