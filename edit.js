@@ -23,7 +23,14 @@ function updateProfile() {
 
     // Save the updated inputs array to localStorage
     localStorage.setItem("inputs", JSON.stringify(inputs));
+    localStorage.setItem("name", nameElement.value);
+    localStorage.setItem("email", emailElement.value);
+
+    document.getElementById("name").innerText = nameElement.value;
+    document.getElementById("email").innerText = emailElement.value;
   }
 
   alert("Profile saved!");
+
+  window.location.href = "profile.html";
 }
