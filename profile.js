@@ -21,3 +21,7 @@ function populateEditForm() {
     window.location.href = "edit.html";
 
 }
+
+function logOut() {
+  window.location.href = "login.html";
+}

@@ -12,6 +12,11 @@ window.addEventListener("load", () => {
   }
 });
 
+let isValidEmail = (email) => {
+  const regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
+  return regex.test(email.toLowerCase());
+};
+
 let addInputs = () => {
   let newName = nameInput.value.trim();
   let newEmail = emailInput.value.trim();
@@ -19,6 +24,10 @@ let addInputs = () => {
 
   if (newName === "" || newEmail === "" || newPassword === "") {
     alert("Please enter the required fields");
+    return;
+  }
+  if (!isValidEmail(newEmail)) {
+    alert("Please enter a valid email");
     return;
   }
 
@@ -49,12 +58,13 @@ let addInputs = () => {
     localStorage.setItem("name", current_user.name);
     localStorage.setItem("email", current_user.email);
     localStorage.setItem("id", current_user.id);
-    window.location.href = "profile.html";
+    window.location.href = "login.html";
   } else {
     alert("Login failed");
   }
-};
 
+
+};
 
 const signInButton = document.getElementById("signin-btn");
 signInButton.addEventListener("click", addInputs);
