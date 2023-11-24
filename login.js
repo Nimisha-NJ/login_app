@@ -11,10 +11,7 @@ function saveData() {
     })
   ) {
     alert("Login successful");
-    // let current_user = user_records.filter((v)=>{return v.email == email && v.password == password})[0]
-    // localStorage.setItem("name" , current_user.name)
-    // localStorage.setItem("email", current_user.email);
-    // window.location.href = "login_profile.html"
+    
     let current_user = user_records.find(
       (v) => v.email == email && v.password == password
     );

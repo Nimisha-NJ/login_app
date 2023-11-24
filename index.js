@@ -22,6 +22,7 @@ let addInputs = () => {
   let newEmail = emailInput.value.trim();
   let newPassword = passwordInput.value.trim();
 
+  // Validate inputs before pushing to the array
   if (newName === "" || newEmail === "" || newPassword === "") {
     alert("Please enter the required fields");
     return;
@@ -31,6 +32,7 @@ let addInputs = () => {
     return;
   }
 
+  // If all validations pass, proceed
   const data = {
     id: Date.now(),
     name: newName,
@@ -40,14 +42,15 @@ let addInputs = () => {
 
   inputs.push(data);
 
-  // Clear the input fields
   nameInput.value = "";
   emailInput.value = "";
   passwordInput.value = "";
 
-  console.log(inputs); // for testing
+  console.log("Inputs array:", inputs); // Log the inputs array for debugging
 
   localStorage.setItem("inputs", JSON.stringify(inputs));
+
+  alert("Data added successfully!"); // Add this alert to check if data is being added
 
   let user_records = JSON.parse(localStorage.getItem("inputs")) || [];
   let current_user = user_records.find(
@@ -62,9 +65,9 @@ let addInputs = () => {
   } else {
     alert("Login failed");
   }
-
-
 };
 
-const signInButton = document.getElementById("signin-btn");
-signInButton.addEventListener("click", addInputs);
+
+
+// const signInButton = document.getElementById("signin-btn");
+// signInButton.addEventListener("click", addInputs);
