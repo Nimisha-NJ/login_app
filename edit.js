@@ -1,7 +1,8 @@
 let nameElement = document.getElementById("name");
 let emailElement = document.getElementById("email");
 let changePasswordCheckbox = document.getElementById("changePassword");
-let newPasswordElement = document.getElementById("newPassword");
+ let newPasswordElement = document.getElementById("newPassword");
+ let confirmPasswordElement = document.getElementById("confirmPassword");
 
 let name = localStorage.getItem("name");
 let email = localStorage.getItem("email");
@@ -11,6 +12,21 @@ emailElement.value = email;
 
 function updateProfile() {
   const index = inputs.findIndex((user) => user.id === id);
+
+  // If the changePassword checkbox is checked, update the password
+  if (changePasswordCheckbox.checked) {
+    let newPassword = newPasswordElement.value;
+    let confirmedPassword = confirmPasswordElement.value;
+
+    // Check if new password and confirmed password are entered and match
+    if (newPassword !== "" && newPassword === confirmedPassword) {
+      inputs[index].password = newPassword;
+    } else {
+      alert("New password and confirmed password do not match or are empty.");
+      return;
+    }
+  }
+
   // If the user is found in the array, update the values
   if (index !== -1) {
     inputs[index].name = nameElement.value;
@@ -34,3 +50,4 @@ function updateProfile() {
 
   window.location.href = "profile.html";
 }
+
